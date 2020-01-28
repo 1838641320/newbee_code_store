@@ -1,4 +1,4 @@
-﻿#include<stdio.h>
+﻿#include<cstdio>
 typedef long long ll;
 ll extgcd(ll a, ll b, ll &x, ll &y) {
 	ll d = a;
