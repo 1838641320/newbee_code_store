@@ -17,7 +17,7 @@ int main() {
 		memset(len,0x3f,32*32*32*4);
 		memset(maze,0,32*32*32);
 		for (int i=1;i<=L;getchar(),i++)for(int j=1;j<=R;getchar(),j++) for (int k=1;k<=C;k++){
-            maze[i][j][k]=getchar();
+			maze[i][j][k]=getchar();
 			if (maze[i][j][k]=='S') s={i,j,k};
 			if (maze[i][j][k]=='E') e={i,j,k};
 		}
