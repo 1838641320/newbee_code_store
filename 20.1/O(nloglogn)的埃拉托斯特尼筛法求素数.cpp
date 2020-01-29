@@ -32,8 +32,7 @@ ll sieve(ll n) {
 	for (ll i = 3; i <= n; i++) {
 		if (!np[i]) {
 			prime[p++] = i;
-			for (ll j = i * i; j <= n; j += 2 * i)
-				np[j] = 1;
+			for (ll j = i * i; j <= n; j += 2 * i) np[j] = 1;
 		}
 	}
 	return p;
@@ -48,8 +47,7 @@ ll sieve(ll n) {
 	for (ll i = 2; i <= n; i++) {
 		if (!composit[i]) {
 			prime[p++] = i;
-			for (ll j = i * i; j <= n; j += i)
-				composit[j] = 1;
+			for (ll j = i * i; j <= n; j += i) composit[j] = 1;
 		}
 	}
 	return p;
