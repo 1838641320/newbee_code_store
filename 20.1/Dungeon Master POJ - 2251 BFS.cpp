@@ -25,6 +25,7 @@ int main() {
 		route.push(s);
 		while (!route.empty()){
 			n=route.front();
+			if(n.x==e.x&&n.y==e.y&&n.z==e.z) break;
 			route.pop();
 			for (i=0;i<6;i++){
 				char c=(maze change);
