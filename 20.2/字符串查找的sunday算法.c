@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<string.h>
 #define maxn 6666
-int place[280]={0};
-char input[maxn+5]={0},search[maxn+5]={0},*res;
+int place[300]={0};
+unsigned char input[maxn+5]={0},search[maxn+5]={0},*res;
 int main() {
 	fgets(input,maxn,stdin);
 	fgets(search,maxn,stdin);
@@ -24,4 +24,5 @@ int main() {
 		puts(input+i);
 	}
 	else puts("not found");
+	getchar();
 }
