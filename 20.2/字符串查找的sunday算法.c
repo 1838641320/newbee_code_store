@@ -18,8 +18,7 @@ int main() {
 		if(j==l2) break;
 		else i+=l2-place[input[l2+i]];
 	}
-	res=input+i+l2-1;
-	if(strlen(res)){
+	if(i<end){
 		printf("place:%d\n",i);
 		puts(input+i);
 	}
