@@ -14,8 +14,8 @@ vec gauss_jordan(const matrix &A,const vec &b) {
 	all(i,n) {
 		int pivot = i;
 		for (int j = i; j < n; j++) if (abs(B[j][i]) > abs(B[pivot][i])) pivot = j;
-		swap(B[i],B[pivot]);
-		if (abs(B[i][i]) < ep) return vec();
+		swap(B[i],B[pivot]);S
+		if (fabs(B[i][i]) < ep) return vec();
 		for (int j = i + 1; j <= n; j++) B[i][j] /= B[i][i];
 		for (int j = 0; j < n; j++) {
 			if (i != j) {
