@@ -6,7 +6,7 @@ int next[maxn]= {0};
 void Next(char *s,int *fail) {
 	fail[0]=-1,fail[1]=0;
 	int len=strlen(s);
-	for(int i=1,j=0;i<len&&j<len;) {
+	for(int i=1,j=0;i<len;) {
 		if(j==-1||s[i]==s[j])fail[++i]=++j;
 		else j=fail[j];
 	}
