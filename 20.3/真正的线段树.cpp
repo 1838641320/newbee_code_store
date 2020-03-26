@@ -58,5 +58,6 @@ ll search(ll index,ll l,ll r) {
 	return num;
 }
 int main() {
-
+	 build(1,1,n,arr); 
+	 
 }
