@@ -9,6 +9,13 @@ ll extgcd(ll a,ll b,ll* x,ll* y){
 	else *x=1,*y=0;
 	return d;
 }
+void exgcd(ll a,ll b,ll &x,ll &y,ll &d){
+	if(!b) {d = a;x = 1;y=0;}
+	else{
+		exgcd(b,a%b,y,x,d);
+		y-=x*(a/b);
+	}
+}
 ll gcd(ll a,ll b){return b?gcd(b,a%b):a;}
 int main(){
 	ll a,b,x,y;
