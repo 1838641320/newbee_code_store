@@ -3,12 +3,12 @@
 #define maxn (int)1e5+8
 char pattern[maxn]= {0},text[maxn]= {0};
 int next[maxn]= {0};
-void Next(char *s,int *fail) {
-	fail[0]=-1,fail[1]=0;
-	int len=strlen(s);
+void Next(char *p,int *next) {
+	next[0]=-1,next[1]=0;
+	int len=strlen(p);
 	for(int i=1,j=0;i<len;) {
-		if(j==-1||s[i]==s[j])fail[++i]=++j;
-		else j=fail[j];
+		if(j==-1||p[i]==p[j]) next[++i]=++j;
+		else j=next[j];
 	}
 }
 int KmpSearch(char* s, char* p) {
