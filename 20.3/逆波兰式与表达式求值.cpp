@@ -56,7 +56,8 @@ double cal_repolish() {
 		else {
 			double a,b;
 			b = ans.top(),ans.pop();
-			a = ans.top(),ans.pop();
+			if (!ans.empty()) a = ans.top(),ans.pop();
+			else a = 0;
 			ans.push(cal(a,b,res.front()));
 			res.pop_front();
 		}
