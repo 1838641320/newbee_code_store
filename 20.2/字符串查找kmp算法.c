@@ -4,7 +4,7 @@
 char pattern[maxn]= {0},text[maxn]= {0};
 int next[maxn]= {0};
 void Next(char *p,int *next) {
-	next[0]=-1,next[1]=0;
+	next[0]=-1;
 	int len=strlen(p);
 	for(int i=1,j=0;i<len;) {
 		if(j==-1||p[i]==p[j]) next[++i]=++j;
