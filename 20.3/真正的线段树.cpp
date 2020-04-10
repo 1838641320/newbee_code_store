@@ -19,7 +19,6 @@ void build(ll l,ll r,ll index,ll arr[]) {
 	build(l,mid,index*2,arr);
 	build(mid+1,r,index*2+1,arr);
 	tree[index].data = tree[index*2].data+tree[index*2+1].data;
-	return;
 }
 void push_down(ll index) {
 	if (tree[index].lz!=0) {
@@ -30,7 +29,6 @@ void push_down(ll index) {
 		tree[index*2+1].data += tree[index].lz*(tree[index*2+1].r-mid);
 		tree[index].lz = 0;
 	}
-	return;
 }
 void up_data(ll index,ll l,ll r,ll k) {
 	if (tree[index].r<=r&&tree[index].l>=l) {
@@ -44,7 +42,6 @@ void up_data(ll index,ll l,ll r,ll k) {
 	if (tree[index*2+1].l<=r)
 		up_data(index*2+1,l,r,k);
 	tree[index].data = tree[index*2].data+tree[index*2+1].data;
-	return;
 }
 ll search(ll index,ll l,ll r) {
 	if (tree[index].l>=l&&tree[index].r<=r)
