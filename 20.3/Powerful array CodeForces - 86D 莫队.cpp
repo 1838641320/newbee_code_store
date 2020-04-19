@@ -17,9 +17,8 @@ int main() {
 	for (int i=1;i<=n;i++) scanf("%lld",a+i);
 	for (int i=0;i<t;i++) scanf("%d %d",&q[i].x,&q[i].y),q[i].i=i;
 	sort(q,q+t,cmp);
-	ll sum=a[1];
-	cnt[a[1]]++;
-	for (int i=0,s=1,e=1;i<t;i++) {
+	ll sum=0;
+	for (int i=0,s=1,e=0;i<t;i++) {
 		int l=q[i].x,r=q[i].y;
 		while (s>l) 
 			sum+=(2ll*(cnt[a[--s]]++)+1ll)*a[s];
