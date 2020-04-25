@@ -5,8 +5,8 @@ class Segment_Tree {
 public:
 	vector<int> tree,lz;
 	void init(int n) {
-		tree.resize(2*n+9);
-		lz.resize(2*n+9);
+		tree.resize(4*n+9);
+		lz.resize(4*n+9);
 	}
 	void build(int in,int l,int r) {
 		if (l==r) { scanf("%d",&tree[in]);return;}
