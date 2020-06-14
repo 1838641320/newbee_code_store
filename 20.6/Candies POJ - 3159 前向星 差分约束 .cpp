@@ -1,4 +1,4 @@
-﻿#include"s.h"
+#include"s.h"
 #include<cstdio>
 #include<vector>
 #include<cstring>
