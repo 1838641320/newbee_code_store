@@ -15,7 +15,7 @@ void add(int in=1,int l=1,int r=N){
 	add(in*2,l,mid);add(in*2+1,mid+1,r);
 	tr[in]=max(tr[in*2],tr[in*2+1]);
 }
-int qurry(int in=1,int l=1,int r=N){
+int query(int in=1,int l=1,int r=N){
 	if(l>R||r<L) return 0;
 	if(l>=L&&r<=R) return tr[in];
 	return max(qurry(in*2,l,mid),qurry(in*2+1,mid+1,r));

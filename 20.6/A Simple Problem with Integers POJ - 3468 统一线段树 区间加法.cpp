@@ -33,7 +33,7 @@ void add(int in=1,int l=1,int r=N){
 	add(in*2,l,mid),add(in*2+1,mid+1,r);
 	tr[in]=tr[in*2]+tr[in*2+1];
 }
-ll qurry(int in=1,int l=1,int r=N){
+ll query(int in=1,int l=1,int r=N){
 	if(L>r||R<l) return 0;
 	if(L<=l&&R>=r) return tr[in];
 	pushdown(in,l,r);
