@@ -1,4 +1,4 @@
-﻿#include<bits/stdc++.h>
+#include<bits/stdc++.h>
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define mem(a,b) memset(a,b,sizeof a)
 using namespace std;
@@ -10,12 +10,6 @@ ll det(int n,ll mat[maxn][maxn]){
 	int i,j,k;
 	ll res=1;
 	for(i=0;i<n;i++){
-		if(mat[i][i]==0){
-			for(j=i+1;j<n;j++) if(mat[j][i]) break;
-			if(j==n) return 0;
-			swap(mat[i],mat[j]);
-			res=-res;
-		}
 		for(j=i+1;j<n;j++){
 			while(mat[j][i]){
 				ll t=mat[i][i]/mat[j][i];
