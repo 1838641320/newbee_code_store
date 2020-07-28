@@ -1,23 +1,37 @@
-﻿#include"s.h"
+﻿// #include<bits/extc++.h>
 #include <bits/stdc++.h>
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define mem(a,b) memset(a,b,sizeof a)
 using namespace std;
+class fract{
+public:
+	int num,den;
+	void simplify(){
+		auto &a=*this;
+		int g=__gcd(a.num,a.den);
+		a.num/=g;
+		a.den/=g;
+		if(a.den<0) a.num*=-1,a.den*=-1;
+	}
+};
 class gauss_cal{
 public:
-	struct fract{ int num,den; };
 	typedef vector<fract> vec;
 	typedef vector<vec> Matrix;
 	int line=3,col=3,precision=2;
 	Matrix matrix;
 	fract det={1,1};
 	void init(int l,int c){
+		char ch;int a,b;
 		matrix.clear();
 		line=l,col=c;
 		matrix.resize(l,vec(c));
-		rep(i,0,l) rep(j,0,c)
-			cin>>matrix[i][j].num,
-			matrix[i][j].den=1;
+		rep(i,0,l) rep(j,0,c){
+			scanf("%d%c",&a,&ch);
+			if(ch=='/') scanf("%d",&b);
+			else b=1;
+			matrix[i][j]={a,b};
+		}
 	}
 	void print(){
 		for(auto &i:matrix) {
@@ -38,32 +52,25 @@ public:
 		if(l1<0||l2<0||l1>line||l2>line) return;
 		l1--,l2--;
 		for(int i=0;i<col;i++){
-			auto a=matrix[l1][i],b=matrix[l2][i];
+			auto &a=matrix[l1][i],b=matrix[l2][i];
 			a.num=a.num*b.den*div+b.num*a.den*mul;
 			a.den*=b.den*div;
-			matrix[l1][i]=simplify(a);
+			a.simplify();
 		}
 	}
 	void mul(int l1,int mul,int div){
 		if(l1<0||l1>line) return;
 		l1--;
-		det=simplify({det.num*div,det.den*mul});
+		det={det.num*div,det.den*mul};det.simplify();
 		for(int i=0;i<col;i++){
-			auto a=matrix[l1][i];
+			auto &a=matrix[l1][i];
 			a.num*=mul;
 			a.den*=div;
-			matrix[l1][i]=simplify(a);
+			a.simplify();
 		}
 	}
-	fract simplify(fract a){
-		int g=gcd(a.num,a.den);
-		a.num/=g;
-		a.den/=g;
-		if(a.den<0) a.num*=-1,a.den*=-1;
-		return a;
-	}
 };
-void autosolve(gauss_cal::Matrix mat,gauss_cal::fract det){
+void autosolve(gauss_cal::Matrix mat,fract det){
 	int l=mat.size(),c=mat[0].size();
 	
 }
@@ -71,8 +78,9 @@ int main(){
 	int l,c,l1,l2,pre=2;
 	char cmd[99],*p;
 	gauss_cal mat;
-	while(cin>>l>>c){
-		mat.init(l,c);
+	while(scanf("%d%d",&l,&c)==2){
+		fflush(stdin);
+		mat.init(l,c);fflush(stdin);
 		while(fgets(cmd,99,stdin),*cmd!='!'){
 			if(strcmp(cmd,"det\n")==0){
 				printf("%d",mat.det.num);
@@ -95,7 +103,7 @@ int main(){
 				continue;
 			}
 			int flag=count(cmd,cmd+99,'+')+count(cmd,cmd+99,'-')*2;
-			flag+=count(cmd,cmd+99,'*')*4+count(cmd,cmd+99,'/')*8;
+				flag+=count(cmd,cmd+99,'*')*4+count(cmd,cmd+99,'/')*8;
 			int mul=flag&2?-1:1,div=1;
 			if(flag&4){
 				while(*p&&!isdigit(*p)) p++;
