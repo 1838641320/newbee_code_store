@@ -74,6 +74,10 @@ void autosolve(gauss_cal::Matrix mat,fract det){
 	int l=mat.size(),c=mat[0].size();
 	
 }
+int getnext_int(char *&p){
+	while(*p&&!isdigit(*p)) p++;
+	return strtol(p,&p,10);
+}
 int main(){
 	int l,c,l1,l2,pre=2;
 	char cmd[99],*p;
@@ -93,11 +97,9 @@ int main(){
 				continue;
 			}
 			p=cmd;
-			while(*p&&!isdigit(*p)) p++;
-			l1=strtol(p,&p,10);
+			l1=getnext_int(p);
 			if(count(cmd,cmd+99,' ')){
-				while(*p&&!isdigit(*p)) p++;
-				l2=strtol(p,&p,10);
+				l2=getnext_int(p);
 				mat.Swap(l1,l2);
 				mat.print();
 				continue;
@@ -105,19 +107,12 @@ int main(){
 			int flag=count(cmd,cmd+99,'+')+count(cmd,cmd+99,'-')*2;
 				flag+=count(cmd,cmd+99,'*')*4+count(cmd,cmd+99,'/')*8;
 			int mul=flag&2?-1:1,div=1;
-			if(flag&4){
-				while(*p&&!isdigit(*p)) p++;
-				mul*=strtol(p,&p,10);
-			}
-			if(flag&8){
-				while(*p&&!isdigit(*p)) p++;
-				div=strtol(p,&p,10);
-			}
+			if(flag&4) mul*=getnext_int(p);
+			if(flag&8) div=getnext_int(p);
 			if(count(cmd,cmd+99,'r')==1)
 				mat.mul(l1,mul,div);
 			if(count(cmd,cmd+99,'r')==2){
-				while(*p&&!isdigit(*p)) p++;
-				l2=strtol(p,&p,10);
+				l2=getnext_int(p);
 				mat.add(l1,l2,mul,div);
 			}
 			mat.print();
