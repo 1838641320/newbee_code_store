@@ -6,7 +6,7 @@ int main(){
 	ll n,k,ans;
 	scanf("%lld%lld",&n,&k);
 	ans=n%mod;
-	for(ll l=2,r=l;l<=k;l=r+1){
+	for(ll l=2,r;l<=k;l=r+1){
 		if(n/l) r=min(n/(n/l),k);
 		else r=k;
 		ans=(ans+(n/l*2+1)%mod*(r-l+1))%mod;
