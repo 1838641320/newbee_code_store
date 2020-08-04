@@ -80,3 +80,16 @@ int main(){
     int t;scanf("%d",&t);
     while(t--) solve();
 }
+/*
+
+int lca(int u, int v) {
+  while (top[u] != top[v]) {
+    if (deep[top[u]] > deep[top[v]])
+      u = par[top[u]];
+    else
+      v = par[top[v]];
+  }
+  return deep[u] > deep[v] ? v : u;
+}
+
+*/
