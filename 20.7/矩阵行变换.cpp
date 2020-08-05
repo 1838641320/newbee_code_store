@@ -13,6 +13,10 @@ public:
 		a.den/=g;
 		if(a.den<0) a.num*=-1,a.den*=-1;
 	}
+	void print(){
+		printf("%d",num);
+		if(den^1) printf("/%d",den);
+	}
 };
 class gauss_cal{
 public:
@@ -36,8 +40,7 @@ public:
 	void print(){
 		for(auto &i:matrix) {
 			for(auto &j:i) {
-				printf("%d",j.num);
-				if(j.den!=1) printf("/%d ",j.den);
+				j.print();
 				putchar('\t');
 			}
 			puts("\n");
@@ -87,8 +90,7 @@ int main(){
 		mat.init(l,c);fflush(stdin);
 		while(fgets(cmd,99,stdin),*cmd!='!'){
 			if(strcmp(cmd,"det\n")==0){
-				printf("%d",mat.det.num);
-				if(mat.det.den!=1) printf("/%d",mat.det.den);
+				mat.det.print();
 				puts("");
 				continue;
 			}
