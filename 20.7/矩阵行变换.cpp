@@ -22,7 +22,7 @@ class gauss_cal{
 public:
 	typedef vector<fract> vec;
 	typedef vector<vec> Matrix;
-	int line=3,col=3,precision=2;
+	int line=3,col=3;
 	Matrix matrix;
 	fract det={1,1};
 	void init(int l,int c){
