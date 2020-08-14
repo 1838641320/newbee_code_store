@@ -10,11 +10,11 @@ struct edge{int t,nex;} g[maxn*8];
 int head[maxn*2],sz;
 int q[maxn*4]={},l,r,n,a,b;;
 template<typename T>
-inline void read(T &X){
-	X=0;int c=getchar(),w=0;
-	while(!isdigit(c)) w|=c=='-',c=getchar();
-	while(isdigit(c)) X=X*10+(c^'0'),c=getchar();
-	if(w) X=-X;
+void read(T&a){
+	a=0;int c=getchar(),f=0;
+	for(;!isdigit(c);c=getchar()) f|=c=='-';
+	for(;isdigit(c);c=getchar()) a=a*10+(c^'0');
+	if(f) a=-a;
 }
 void addedge(int f,int t){
 	g[sz]={t,head[f]};

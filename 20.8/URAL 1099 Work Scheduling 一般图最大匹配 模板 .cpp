@@ -29,8 +29,7 @@ bool Match(int x){
 		x=q.front(),q.pop_front();
 		for(int u:g[x])
 			if(ty[u]==0){
-				ty[u]=1;
-				pre[u]=x;
+				ty[u]=1;pre[u]=x;
 				if(link[u]) q.push_back(link[u]),ty[link[u]]=2;
 				else {
 					for(;x;u=x){
