@@ -15,17 +15,15 @@ int Q[maxn];
 int bfs(int s,int t){
 	int l=0,r=0;Q[r++]=s;
 	mem(deep,0);deep[s]=1;
-	while(r>l){
-		int u=Q[l++];
-		for(int i=head[u];~i;i=g[i].nex){
+	while(l<r)
+		for(int u=Q[l++],i=head[u];~i;i=g[i].nex){
 			int v=g[i].t;
-			if(g[i].cap&&deep[v]==0){
+			if(g[i].cap&&!deep[v]){
 				deep[v]=deep[u]+1;
 				if(v==t) return 1;
 				Q[r++]=v;
 			}
 		}
-	}
 	return 0;
 }
 int dfs(int s,int t,int cap){
