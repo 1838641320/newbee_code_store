@@ -31,16 +31,14 @@ int bfs(int s,int t){
 		}
 	return 0;
 }
-int dfs(int s,int t,int cap){
+int dfs(int s,int t,int cap,int flow=0){
 	if(s==t) return cap;
-	int flow=0;
 	for(int i=head[s];~i;i=g[i].nex){
 		edge &e=g[i];
 		if(deep[s]+1==deep[e.t]&&e.cap){
 			int di=dfs(e.t,t,min(e.cap,cap-flow));
-			if(di==0) continue;
-			e.cap-=di;g[i^1].cap+=di;
-			flow+=di;
+			if(di) flow+=di,
+				e.cap-=di,g[i^1].cap+=di;
 			if(flow==cap) break;
 		}
 	}

@@ -1,5 +1,4 @@
-﻿#include"s.h"
-#include<bits/stdc++.h>
+﻿#include<bits/stdc++.h>
 #define mem(a,b) memset(a,b,sizeof a);
 using namespace std;
 const int maxn=1e5+9,inf=0x3f3f3f3f;
@@ -15,31 +14,31 @@ int Q[maxn];
 int bfs(int s,int t){
 	int l=0,r=0;Q[r++]=s;
 	mem(deep,0);deep[s]=1;
-	while(l<r)
-		for(int u=Q[l++],i=head[u];~i;i=g[i].nex){
+	while(r>l){
+		int u=Q[l++];
+		for(int i=head[u];~i;i=g[i].nex){
 			int v=g[i].t;
-			if(g[i].cap&&!deep[v]){
+			if(g[i].cap&&deep[v]==0){
 				deep[v]=deep[u]+1;
 				if(v==t) return 1;
 				Q[r++]=v;
 			}
 		}
+	}
 	return 0;
 }
-int dfs(int s,int t,int cap){
+int dfs(int s,int t,int cap,int flow=0){
 	if(s==t) return cap;
-	int flow=0;
 	for(int i=head[s];~i;i=g[i].nex){
 		edge &e=g[i];
 		if(deep[s]+1==deep[e.t]&&e.cap){
 			int di=dfs(e.t,t,min(e.cap,cap-flow));
-			if(di==0) continue;
-			e.cap-=di,g[i^1].cap+=di;
-			flow+=di;
+			if(di) flow+=di,
+				e.cap-=di,g[i^1].cap+=di;
 			if(flow==cap) break;
 		}
 	}
-	if(!flow) deep[s]=-inf;
+	if(!flow) deep[s]=-99;
 	return flow;
 }
 int dinic(int s,int t){
