@@ -11,7 +11,7 @@ void addedge(int f,int t,int cap){
 	g[sz]={f,head[t],cap};
 	head[t]=sz++;
 }
-int Q[maxn],dis[maxn],gap[maxn],S,T;
+int Q[maxn],dis[maxn],gap[maxn],S,T,EF;
 void bfs(int t){
 	mem(dis,-1),mem(gap,0);
 	dis[t]=0;gap[0]=1;
@@ -34,15 +34,14 @@ int dfs(int u,int cap,int flow=0){
 			if(cap==flow) return flow;
 		}
 	}
-	if(--gap[dis[u]]==0) dis[S]=maxn-2;
+	if(--gap[dis[u]]==0) EF=1;
 	++gap[++dis[u]];
 	return flow;
 }
 int isap(int s,int t){
 	int res=0;
-	S=s,T=t;
-	for(bfs(t);dis[s]<maxn-2;) 
-		res+=dfs(s,inf);
+	S=s,T=t,EF=0;
+	for(bfs(t);!EF;) res+=dfs(s,inf);
 	return res;
 }
 int n,m;
