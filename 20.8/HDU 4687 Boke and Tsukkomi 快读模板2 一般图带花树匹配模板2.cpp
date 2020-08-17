@@ -55,6 +55,11 @@ bool match(int x){
 	}
 	return 0;
 }
+int maxmatch(int n){
+	int res=0;
+	for(int j=1;j<=n;j++) res+=!link[j]&&match(j);
+	return res;
+}
 int main(){
 	while(~scanf("%d%d",&n,&m)){
 		mem(link,0),mem(pre,0);
@@ -65,8 +70,7 @@ int main(){
 			E[i]={f,t};
 			g[f].push_back(t),g[t].push_back(f);
 		}
-		int maxmatch=0;
-		for(int i=1;i<=n;i++) maxmatch+=link[i]==0&&match(i);
+		int Maxmatch=maxmatch(n);
 		vector<int> ans;
 		for(int i=1,f,t;i<=m;i++){
 			f=E[i].x,t=E[i].y;
@@ -76,9 +80,8 @@ int main(){
 				if(E[j].x!=f&&E[j].y!=f&&E[j].x!=t&&E[j].y!=t)
 					g[E[j].x].push_back(E[j].y),
 					g[E[j].y].push_back(E[j].x);
-			int res=0;
-			for(int j=1;j<=n;j++) res+=!link[j]&&match(j);
-			if(res<maxmatch-1) ans.push_back(i); 
+			int res=maxmatch(n);
+			if(res<Maxmatch-1) ans.push_back(i); 
 		}
 		printf("%d\n",ans.size());
 		for(int i=0;i<ans.size();i++) printf(" %d"+!i,ans[i]);

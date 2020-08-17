@@ -8,7 +8,7 @@
 using namespace std;
 const int maxn=409,inf=1e9;
 int n,m,k;
-int head[maxn],sz,deep[maxn];
+int head[maxn],sz,dis[maxn];
 struct edge{int t,nex,cap;}g[maxn*maxn];
 void addedge(int f,int t,int cap){
 	g[sz]={t,head[f],cap};
@@ -19,12 +19,12 @@ void addedge(int f,int t,int cap){
 int Q[maxn];
 int bfs(int s,int t){
 	int l=0,r=0;Q[r++]=s;
-	mem(deep,0);deep[s]=1;
+	mem(dis,0);dis[s]=1;
 	while(l<r)
 		for(int u=Q[l++],i=head[u];~i;i=g[i].nex){
 			int v=g[i].t;
-			if(g[i].cap&&!deep[v]){
-				deep[v]=deep[u]+1;
+			if(g[i].cap&&!dis[v]){
+				dis[v]=dis[u]+1;
 				if(v==t) return 1;
 				Q[r++]=v;
 			}
@@ -35,19 +35,19 @@ int dfs(int s,int t,int cap,int flow=0){
 	if(s==t) return cap;
 	for(int i=head[s];~i;i=g[i].nex){
 		edge &e=g[i];
-		if(deep[s]+1==deep[e.t]&&e.cap){
+		if(dis[s]+1==dis[e.t]&&e.cap){
 			int di=dfs(e.t,t,min(e.cap,cap-flow));
 			if(di) flow+=di,
 				e.cap-=di,g[i^1].cap+=di;
 			if(flow==cap) break;
 		}
 	}
-	if(!flow) deep[s]=-99;
+	if(!flow) dis[s]=-99;
 	return flow;
 }
 int dinic(int s,int t){
 	int ans=0;
-	for(;bfs(s,t);) ans+=dfs(s,t,inf);
+	while(bfs(s,t)) ans+=dfs(s,t,inf);
 	return ans;
 }
 int main(){
