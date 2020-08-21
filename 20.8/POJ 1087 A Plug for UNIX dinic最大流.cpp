@@ -39,10 +39,10 @@ int dfs(int s,int t,int cap,int flow=0){
 			int di=dfs(e.t,t,min(e.cap,cap-flow));
 			if(di) flow+=di,
 				e.cap-=di,g[i^1].cap+=di;
+			else dis[e.t]=-9;
 			if(flow==cap) break;
 		}
 	}
-	if(!flow) dis[s]=-99;
 	return flow;
 }
 int dinic(int s,int t){
