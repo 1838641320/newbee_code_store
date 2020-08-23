@@ -13,7 +13,7 @@ namespace Bigint{
 	inline ll adc(ll a,ll &carry){
 		a+=carry;
 		carry=a/bi;
-		return a%bi;
+		return a-bi*carry;
 	}
 	Int mul(Int a,Int b){
 		Int c(a.size()+b.size()+2);
