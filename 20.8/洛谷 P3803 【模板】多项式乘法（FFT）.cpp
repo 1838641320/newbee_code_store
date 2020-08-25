@@ -28,7 +28,7 @@ void poly_mul(int n,int m,int *a,int *b){
 	for(int i=0;i<=num;i++)
 		A[i]*=B[i];
 	fft(num,A,-1);
-	rep(i,0,num) a[i]=A[i].real()/num+0.5;
+	for(int i=0;i<=num;i++) a[i]=A[i].real()/num+0.5;
 }
 int a[maxn]={},b[maxn]={},n,m;
 int main(){
