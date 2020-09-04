@@ -6,11 +6,12 @@ namespace Bigint{
 	typedef long long ll;
 	typedef vector<ll> Int;
 	const ll bi=1e8;
+	ll carry=0;
 	void print(Int a){
 		printf("%lld",a[a.size()-1]);
 		for(int i=a.size()-2;~i;i--) printf("%08lld",a[i]);
 	}
-	inline ll adc(ll a,ll &carry){
+	inline ll adc(ll a=0){
 		a+=carry;
 		carry=a/bi;
 		return a-bi*carry;
@@ -18,27 +19,24 @@ namespace Bigint{
 	Int mul(Int a,Int b){
 		Int c(a.size()+b.size()+2);
 		for(int i=0;i<a.size();i++){
-			ll carry=0;
 			for(int j=0;j<b.size();j++)
-				c[i+j]=adc(c[i+j]+a[i]*b[j],carry);
-			if(carry) c[i+b.size()]+=carry;
+				c[i+j]=adc(c[i+j]+a[i]*b[j]);
+			c[i+b.size()]=adc();
 		}
 		while(c.size()>1&&c.back()==0) c.pop_back();
 		return c;
 	}
 	Int mul(Int a,ll b){//b<=bi
-		ll carry=0;
-		for(ll &i:a) i=adc(i*b,carry);
-		if(carry) a.push_back(carry);
+		for(ll &i:a) i=adc(i*b);
+		if(carry) a.push_back(adc());
 		return a;
 	}
 	Int add(Int a,Int b){
 		if(b.size()>a.size()) swap(a,b);
-		ll carry=0;
 		for(int i=0;i<b.size();i++)
 			a[i]+=b[i];
-		for(ll &i:a) i=adc(i,carry);
-		if(carry) a.push_back(carry);
+		for(ll &i:a) i=adc(i);
+		if(carry) a.push_back(adc());
 		return a;
 	}
 	Int make(char *s){

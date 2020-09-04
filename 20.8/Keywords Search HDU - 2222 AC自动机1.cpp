@@ -5,8 +5,7 @@ using namespace std;
 typedef long long ll;
 const int maxn=1e6+9;
 namespace AC{
-int tr[maxn][26],sz;
-int end[maxn],fail[maxn];
+int tr[maxn][26],sz,end[maxn],fail[maxn];
 void insert(char s[]){
 	int u=0,c,len=strlen(s);
 	rep(i,0,len){
