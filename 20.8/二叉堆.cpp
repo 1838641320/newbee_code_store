@@ -1,8 +1,8 @@
-#include<bits/stdc++.h>
-#define rep(i,a,b) for(int i=a;i<b;i++)
-#define mem(a,b) memset(a,b,sizeof a)
+#include<functional>
+#include<cstdio>
+#include<random>
+#include<ctime>
 using namespace std;
-typedef long long ll;
 template<class ty=int,class Cmp=less<ty>,int maxn=(int)1e6+9>
 struct myheap{
 	function<bool(ty,ty)> cmp=Cmp();
@@ -33,7 +33,7 @@ int main(){
 	int x;
 	while(scanf("%d",&x)==1){
 		pq.clear();
-		rep(i,0,99) pq.push(rd()%1000);
+		for(int i=0;i<x;i++) pq.push(rd()%(x*50));
 		for(int i=1;i<=pq.sz;i++) printf("%d ",pq.v[i]);puts("\n\n");
 		while(pq.sz) printf("%d ",pq.pop());puts("\n\n");
 	}
