@@ -8,7 +8,7 @@ namespace Bigint{
 	const ll bi=1e8;
 	ll carry=0;
 	void print(Int a){
-		printf("%lld",a[a.size()-1]);
+		printf("%lld",a.back());
 		for(int i=a.size()-2;~i;i--) printf("%08lld",a[i]);
 	}
 	inline ll adc(ll a=0){
