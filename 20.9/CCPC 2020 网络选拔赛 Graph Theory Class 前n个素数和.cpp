@@ -30,6 +30,6 @@ void solve(){
 	cout<<ans1<<endl;
 }
 int main() {
-	int t;scanf("%lld",&t);
+	int t;scanf("%d",&t);
 	while(t--) solve();
 }
