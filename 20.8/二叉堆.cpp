@@ -16,7 +16,7 @@ struct myheap{
 			swap(v[p/2],v[p]);
 		}
 	}
-	int pop(){
+	ty pop(){
 		swap(v[1],v[sz--]);
 		for(int p=1,t=1;;p=t){
 			if(p*2<=sz&&cmp(v[p*2],v[t])) t=p*2;
