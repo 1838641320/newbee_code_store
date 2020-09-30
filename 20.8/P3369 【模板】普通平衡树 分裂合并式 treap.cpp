@@ -18,7 +18,7 @@ namespace treap{
 	void update(int x){szt[x]=szt[ch[x][0]]+szt[ch[x][1]]+1;}
 	int merge(int x,int y){
 		if(!x||!y) return x+y;
-		if(pri[x]<pri[y]) 
+		if(pri[x]>pri[y]) 
 			{ch[x][1]=merge(ch[x][1],y);return update(x),x;}
 		else 
 			{ch[y][0]=merge(x,ch[y][0]);return update(y),y;}
