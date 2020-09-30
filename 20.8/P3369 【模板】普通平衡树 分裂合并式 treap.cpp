@@ -47,28 +47,28 @@ int main(){
 	scanf("%d",&n);
 	while(n--){
 		scanf("%d%d",&ty,&p);
-		if(ty==1) {
+		if(ty==1) {//insert p
 			split(root,p,x,y);
 			root=merge(merge(x,newnode(p)),y);
 		}
-		if(ty==2){
+		if(ty==2){//delete p
 			split(root,p,x,z);
 			split(x,p-1,x,y);
 			y=merge(ch[y][0],ch[y][1]);
 			root=merge(merge(x,y),z);
 		}
-		if(ty==3){
+		if(ty==3){//getrank
 			split(root,p-1,x,y);
 			printf("%d\n",szt[x]+1);
 			root=merge(x,y);
-		}
+		}//find kth
 		if(ty==4) printf("%d\n",val[get_rank(root,p)]);
-		if(ty==5){
+		if(ty==5){//find pre
 			split(root,p-1,x,y);
 			printf("%d\n",val[get_rank(x,szt[x])]);
 			root=merge(x,y);
 		}
-		if(ty==6){
+		if(ty==6){//find suc
 			split(root,p,x,y);
 			printf("%d\n",val[get_rank(y,1)]);
 			root=merge(x,y);
