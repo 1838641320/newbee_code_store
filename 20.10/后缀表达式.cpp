@@ -25,9 +25,9 @@ void repolish(char *s,char *p){
 	op['*']=op['/']=2;
 	char st[maxn];int top=0;
 	while(*s){
+		while(*s==' ') s++;
 		if(isdecimal(s)){
-			if(*s!='+') *p++=*s++;
-			else s++;
+			if(*s++!='+') *p++=s[-1];
 			while(isdigit(*s)||*s=='.')
 				*p++=*s++;
 			*p++=' ';
