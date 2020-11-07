@@ -18,35 +18,32 @@ const int maxn=5e3+9;
 int n,m,p,dfn[maxn]={},low[maxn]={},dfscnt=0,scc[maxn];
 vector<int> g[maxn]={},st;
 bool ins[maxn];
-void unite(int u){
-    scc[st.back()]=u;
-    ins[st.back()]=0;
-    st.pop_back();
-}
 void tarjan(int u){
-    low[u]=dfn[u]=++dfscnt;
-    st.push_back(u),ins[u]=1;
-    for(int i:g[u]){
-        if(!dfn[i])
-            tarjan(i),low[u]=min(low[i],low[u]);
-        else if(ins[i]) low[u]=min(low[u],dfn[i]);
-    }
-    if(dfn[u]==low[u]){
-        while(st.back()!=u) unite(u);
-        unite(u);
-    }
+	low[u]=dfn[u]=++dfscnt;
+	st.push_back(u),ins[u]=1;
+	for(int i:g[u]){
+		if(!dfn[i])
+			tarjan(i),low[u]=min(low[i],low[u]);
+		else if(ins[i]) low[u]=min(low[u],dfn[i]);
+	}
+	if(dfn[u]==low[u])
+		for(int v=-1;v!=u;){
+			v=st.back();st.pop_back();
+			scc[v]=u;
+			ins[v]=0;
+		}
 }
 int du[maxn]={};
 int main(){
-    read(n,m,p);
-    rep(i,0,m){
-        int u,v;scanf("%d%d",&u,&v);
-        g[u].push_back(v);
-    }
-    mem(dfn,0),mem(low,0),dfscnt=0;
-    for(int i=1;i<=n;i++) if(!dfn[i]) tarjan(i);
-    mem(du,0);
-    for(int i=1;i<=n;i++) for(int j:g[i]) {
+	read(n,m,p);
+	rep(i,0,m){
+		int u,v;scanf("%d%d",&u,&v);
+		g[u].push_back(v);
+	}
+	mem(dfn,0),mem(low,0),dfscnt=0;
+	for(int i=1;i<=n;i++) if(!dfn[i]) tarjan(i);
+	mem(du,0);
+	for(int i=1;i<=n;i++) for(int j:g[i]) {
 		if(scc[i]!=scc[j]) du[scc[j]]++;
 	}
 	int ans=0;
