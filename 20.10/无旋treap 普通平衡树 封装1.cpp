@@ -1,7 +1,7 @@
 #include<iostream>
 #include<algorithm>
 #include<cstring>
-#define rep(i,a,b) for(int i=a;i<b;i++)
+#define rep(i,a,b) for(int i=a,bb=b;i<bb;i++)
 #define mem(a,b) memset(a,b,sizeof a)
 using ll=long long;
 template<class ty>void read(ty&a){
@@ -18,21 +18,27 @@ using namespace std;
 const int maxn=1.4e6+9;
 namespace treap{
 	mt19937 rd;
+	int mem[maxn],top=0;
 	int ch[maxn][2]={},pri[maxn],val[maxn],szt[maxn];
-	int root,sz,L,R,M;
-	void init(){sz=0;rd.seed(time(0));root=0;}
+	int root,L,R,M;
+	void init(){
+		top=root=0;
+		rd.seed(time(0));
+		for(int i=1;i<maxn;i++) mem[top++]=i;
+	}
 	int newnode(int v){
-		szt[++sz]=1,val[sz]=v,pri[sz]=rd();
-		ch[sz][0]=ch[sz][1]=0;
-		return sz;
+		int n=mem[--top];
+		szt[n]=1,val[n]=v,pri[n]=rd();
+		ch[n][0]=ch[n][1]=0;
+		return n;
 	}
 	void update(int x){szt[x]=szt[ch[x][0]]+szt[ch[x][1]]+1;}
 	int merge(int l,int r){
 		if(!l||!r) return l+r;
 		if(pri[l]<pri[r])
-			{ch[l][1]=merge(ch[l][1],r);return update(l),l;}
+			{ch[l][1]=merge(ch[l][1],r);update(l);return l;}
 		else 
-			{ch[r][0]=merge(l,ch[r][0]);return update(r),r;}
+			{ch[r][0]=merge(l,ch[r][0]);update(r);return r;}
 	}
 	void split(int in,int v,int &l,int &r){
 		if(!in) return void(l=r=0);
@@ -57,6 +63,7 @@ namespace treap{
 	void erase(int v){
 		split(root,v-1,L,R);
 		split(R,v,M,R);
+		if(M) mem[top++]=M;
 		M=merge(ch[M][0],ch[M][1]);
 		root=merge(L,merge(M,R));
 	}
