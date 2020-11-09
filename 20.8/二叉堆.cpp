@@ -9,7 +9,7 @@ struct myheap{
 	int sz;
 	ty v[maxn];
 	void clear(){sz=0;}
-	void push(int x){
+	void push(ty x){
 		v[++sz]=x;
 		for(int p=sz;p>1;p/=2){
 			if(cmp(v[p/2],v[p])) return;
