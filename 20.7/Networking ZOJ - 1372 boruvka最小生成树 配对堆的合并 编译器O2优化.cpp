@@ -1,5 +1,5 @@
 #pragma G++ optimize(“O2”)
-//#pragma GCC optimize(2)
+//#pragma GCC optimize(“O2”)
 #include <bits/stdc++.h>
 #include<ext/pb_ds/priority_queue.hpp>
 #define rep(i,a,b) for(int i=a;i<b;i++)
