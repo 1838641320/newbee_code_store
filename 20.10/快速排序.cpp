@@ -22,7 +22,7 @@ void partition(int a[],int len){
 	int i=0,j=len-1;
 	int x=a[0];
 	while(i<j){
-		while(i<j&&x>a[j]) j--;
+		while(i<j&&x<a[j]) j--;
 		if(i<j) a[i++]=a[j];
 		while(i<j&&a[i]<x) i++;
 		if(i<j) a[j--]=a[i];
