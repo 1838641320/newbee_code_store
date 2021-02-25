@@ -17,8 +17,8 @@ using namespace std;
 const int maxn=1e6+9;
 int n;
 char s[maxn];
-int sa[maxn],rk[maxn],oldrk[maxn<<1];
-int id[maxn],px[maxn],cnt[maxn];
+int sa[maxn],rk[maxn];
+int id[maxn],px[maxn],cnt[maxn],oldrk[maxn<<1];
 void construct_sa(char s[]){
 	int m=256,p;//value range
 	auto cmp=[&](int x,int y,int w){
