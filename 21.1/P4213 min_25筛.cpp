@@ -25,8 +25,8 @@ void euler(){
 	for(int i=1;i<=pcnt;i++) 
 		s1[i]=s1[i-1]+pr[i];
 }
-ll n,sn;
 namespace min_25{
+	ll n,sn;
 	ll gs[maxn*2],gcnt;
 	int id(ll x){return x<=sn?x:gcnt+1-n/x;}
 	ll g1[maxn*2],g2[maxn*2];
