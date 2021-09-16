@@ -24,9 +24,9 @@ namespace BigInt{
 	}
 	Int operator*(Int a,Int b){
 		Int c(a.size()+b.size()+2);
-		for(int i=0;i<a.size();i++){
+		for(int i=0;i<(int)a.size();i++){
 			ll carry=0;
-			for(int j=0;j<b.size();j++)
+			for(int j=0;j<(int)b.size();j++)
 				c[i+j]=adc(c[i+j]+a[i]*b[j],carry);
 			if(carry) c[i+b.size()]+=carry;
 		}
@@ -37,12 +37,13 @@ namespace BigInt{
 		ll carry=0;
 		for(ll &i:a) i=adc(i*b,carry);
 		if(carry) a.push_back(carry);
+		while(a.size()>1&&a.back()==0) a.pop_back();
 		return a;
 	}
 	Int operator+(Int a,Int b){
 		if(b.size()>a.size()) swap(a,b);
 		ll carry=0;
-		for(int i=0;i<b.size();i++)
+		for(int i=0;i<(int)b.size();i++)
 			a[i]+=b[i];
 		for(ll &i:a) i=adc(i,carry);
 		if(carry) a.push_back(carry);
@@ -57,7 +58,7 @@ namespace BigInt{
 		return a;
 	}
 	Int operator-(Int a,Int b){//b<=a
-		for(int i=0;i<b.size();i++){
+		for(int i=0;i<(int)b.size();i++){
 			a[i]-=b[i];
 			if(a[i]<0) a[i]+=bi,a[i+1]--;
 		}//a-b=-(b-a) if negative
@@ -77,7 +78,7 @@ namespace BigInt{
 		return c;
 	}
 	Int operator/(Int a,Int b){
-		auto get=[](const Int&a,int p)->__int128_t{return p<a.size()&&p>=0?a[p]:0;};
+		auto get=[](const Int&a,unsigned p)->__int128_t{return p<a.size()?a[p]:0;};
 		Int res;
 		ll bsz=b.size(),db=get(b,bsz-1)*bi+get(b,bsz-2)+1;
 		while(b.size()<a.size()) b.insert(b.begin(),0);
@@ -93,6 +94,7 @@ namespace BigInt{
 		return res;
 	}
 }
+
 struct BigIntTiny {
 	int sign;
 	std::vector<int> v;
