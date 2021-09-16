@@ -93,6 +93,19 @@ namespace BigInt{
 		if(res.empty()) res.push_back(0);
 		return res;
 	}
+	Int sqrt(const Int &a){
+		if(a.empty()) return make("0");
+		Int b,c;
+		for(int t=(a.size()-1)/2;t;t--) c.push_back(0);
+		if(a.size()&1) c.push_back(sqrt(a.back()));
+		else c.push_back(sqrt(a.back()*1e8));
+		while(1){
+			b=c;
+			c=(b+a/b)/2;
+			if(b==c||b.front()+1==c.front()) break;
+		}
+		return b;
+	}
 }
 
 struct BigIntTiny {
