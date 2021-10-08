@@ -95,14 +95,14 @@ namespace BigInt{
 	}
 	Int sqrt(const Int &a){
 		if(a.empty()) return make("0");
-		Int b,c;
+		Int b,c,one=make("1");
 		for(int t=(a.size()-1)/2;t;t--) c.push_back(0);
-		if(a.size()&1) c.push_back(sqrt(a.back()));
-		else c.push_back(sqrt(a.back()*1e8));
+		if(a.size()&1) c.push_back(std::sqrt(a.back()));
+		else c.push_back(std::sqrt(a.back()*1e8));
 		while(1){
 			b=c;
 			c=(b+a/b)/2;
-			if(b==c||b.front()+1==c.front()) break;
+			if(b==c||c==b+one) break;
 		}
 		return b;
 	}
