@@ -2,6 +2,7 @@
 #include<queue>
 #include<cstring>
 #include<algorithm>
+#include<complex>
 namespace BigInt{
 	typedef long long ll;
 	typedef std::vector<ll> Int;
@@ -104,6 +105,8 @@ namespace BigInt{
 			c=(b+a/b)/2;
 			if(b==c||c==b+one) break;
 		}
+		c=b+one;
+		if(c*c<a) b=b+one;
 		return b;
 	}
 }
