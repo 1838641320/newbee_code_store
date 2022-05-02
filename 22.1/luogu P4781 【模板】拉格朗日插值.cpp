@@ -14,7 +14,7 @@ ll qpow(ll x,ll n,ll c=1){
 	return c;
 }
 struct chazhi{
-	ll n,k;
+	ll n;
 	vector<ll> res;
 	ll calc(ll x){
 		ll ret=0,var=1;
