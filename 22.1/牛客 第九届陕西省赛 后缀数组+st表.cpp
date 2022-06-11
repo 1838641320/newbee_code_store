@@ -36,7 +36,7 @@ void constuct(char s[],int m=256){//1-index,val range [1,m]
 	}
 }
 int ht[maxn];
-void get_height(char s[],int sa[]){
+void get_height(char s[],int sa[]=SA::sa){
 	int i=1,k=0,n=strlen(s+1);
 	for(;i<=n;i++){
 		if(k) --k;
@@ -70,7 +70,7 @@ void solve(){
 	scanf("%s",s+1);
 	n=strlen(s+1);
 	SA::constuct(s);
-	SA::get_height(s,SA::sa);
+	SA::get_height(s);
 	ST<int> st(n,SA::ht);
 	int q;
 	scanf("%d",&q);
