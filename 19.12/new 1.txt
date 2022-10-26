@@ -1,0 +1,58 @@
+#include<stdio.h>
+typedef long long ll;
+const ll maxn=1000008;
+ll sub[1000008]={0};
+ll prime[1006]={0};
+int prime_j(int n) {
+	for(int i=2; i*i<=n; i++) if(!(n%i)) return 0;
+	return n<2?0:1;
+}
+void prime_c(void){
+	for(int i=0;i<1004;i++) prime[i]=prime_j(i);
+}
+int main() {
+	prime_c();
+	ll n,count=1;
+	scanf("%lld",&n);
+	if(n==1) {
+		printf("1");
+		return 0;
+	}
+	for(ll i=2;i<=n;i++){
+		for(ll j=2;;j++){
+			if(j*j>i) break;
+			if(i%j) continue;
+			ll t=i/j;
+			sub[i]+=sub[t];
+			if(prime[j]&&j!=t) sub[i]+=sub[j];
+		}
+		count+=sub[i]+2;
+		sub[i]++;
+	}
+	printf("%lld",count);
+}
+
+
+
+
+#include<stdio.h>
+typedef long long ll;
+#define maxn 18
+ll s[maxn]={0},n,prime[208]={0};
+void dfs(ll a,ll j){
+	s[a]++;
+	for(int i=2;a*i<=n;i++) 
+		dfs(a*i,i);
+}
+int prime_j(int n) {
+	for(int i=2; i*i<=n; i++) if(!(n%i)) return 0;
+	return n<2?0:1;
+}
+int main(){
+	for(int i=0,j=0;i<1007;i++) if(prime_j(i)) prime[j++]=i;
+	ll count;
+	scanf("%lld",&n);
+	dfs(1,2);
+	for(int i=1;i<=n;i++) count+=s[i];
+	printf("%lld",count+n-1);
+}
