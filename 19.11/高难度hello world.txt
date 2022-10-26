@@ -1,0 +1,86 @@
+1819043176
+1870078063
+6581362
+0
+
+8031924123371070824 6581362 0
+
+212122024577877
+18392909292934419200
+13258597303796236287
+3488226974999825612
+18446740340980327787
+6583804984356553859
+17022199216589554817
+6765967946821550568
+14757395258967641283
+
+212122024577877,18392909292934419200,13258597303796236287,3488226974999825612,18446740340980327787 6583804984356553859,17022199216589554817,6765967946821550568,14757395258967641283
+
+
+
+
+#include<stdio.h>
+#define abscanset(glory,nuts,guts) 	glory = nuts;guts = (char*)glory;guts++;guts = guts + *(int*)guts + 4
+/*int fact(char *jesus) {
+	printf("%s",jesus);
+	return 0;
+}*/
+int main() {
+	/*char *a, *i1, *result;
+	char jesus[40] = { "This Will Not Print \"hello world!\"" };
+	int(*function)();*/
+	int  *i2,a[60];
+	i2 = a;
+	/*abscanset(function, main, a);
+	for (i1 = 0; (*(a + (char)i1) != 'h') && (*(a + (char)i1 + 5) != 232); i1++);
+	i2 = (int*)*((int*)(a + (char)i1 + 1));*/
+	*i2 = 1819043176; *(i2+1) = 1870078063; *(i2+2) = 6581362; *(i2+3) = 0;
+	printf("%s", i2);
+	return 0;
+}
+
+
+
+
+
+
+#include<stdio.h>
+int main() {
+	int  *i2;
+	char(*in);
+	long long a[60];
+	i2 = a;
+	*i2 = 1819043176; *(i2 + 1) = 1870078063; *(i2 + 2) = 6581362; *(i2 + 3) = 0;
+	printf("hello world");
+	return 0;
+}
+
+
+
+#include<stdio.h>
+#define abscanset(glory,nuts,guts) 	glory = nuts;guts = (char*)glory;guts++;guts = guts + *(int*)guts + 4
+char fact() { return 0; }
+char main() {
+	char (*function)(),*b;
+	int *c,(*print);
+	unsigned long long a[800] = { 212122024577877,18392909292934419200,13258597303796236287,
+		3488226974999825612,18446740340980327787,6583804984356553859,17022199216589554817,6765967946821550568,14757395258967641283};
+	a[700] = 8031924123371070824; a[701] = 6581362;
+	int change;
+	function = fact;
+	print = (int*)printf;
+	/*function = &fact;
+	function = fact;*/
+	/*b = ((char*)function+5);
+	c = (int*)((int)function + 1);
+	change = (int)b - (int)a;*/
+	//*c = change;
+	//abscanset(function, fact, b);
+	function();
+	function = main;
+	function();
+	//printf("hello world");
+	char s[60] = { "This will not printf hello world" };  printf("%s", s);
+	return 0;
+}
