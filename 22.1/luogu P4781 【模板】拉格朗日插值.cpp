@@ -43,6 +43,7 @@ struct chazhi{
 				ls=tp[j];
 			}
 		}
+		while(res.size()&&res.back()==0) res.pop_back();
 	}
 };
 void solve(){
