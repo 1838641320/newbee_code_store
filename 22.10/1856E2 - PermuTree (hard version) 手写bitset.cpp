@@ -3,7 +3,6 @@
 #include<algorithm>
 using namespace std;
 #include<queue>
-#include<unordered_map>
 typedef long long ll;
 namespace wlm{
 struct bitset{
@@ -83,15 +82,18 @@ void dfs(int x){
 		return;
 	}
 	{//optimize dp, when Σa_i==m, sqrt(m) different Objects.
-		unordered_map<int,int> mp;
-		for(auto i:tsz) mp[i]++;
-		for(int i=1;i<sz[x];i++){
-			while(mp.count(i)&&mp[i]>=3)
-				mp[i]-=2,mp[i*2]+=1;
-		}
+		priority_queue<int> pq;
+		for(auto i:tsz) pq.push(-i);
 		tsz.clear();
-		for(auto [k,v]:mp) 
-			for(int i=0;i<v;i++) tsz.push_back(k);
+		while(pq.size()){
+			tsz.push_back(-pq.top());
+			pq.pop();
+			if(int n=tsz.size();n>=3&&tsz[n-3]==tsz[n-1]){
+				tsz.pop_back();
+				tsz.pop_back();
+				pq.push(-tsz.back()*2);
+			}
+		}
 	}
 	wlm::bitset dp;//O( sqrt(m)*m/w )
 	dp.resize(sz[x]);
@@ -120,7 +122,6 @@ void solve(){
 }
 int main(){
 	ios::sync_with_stdio(0);
-	cin.tie(0);cout.tie(0);
 	int t=1;
 	// cin>>t;
 	while(t--) solve();
