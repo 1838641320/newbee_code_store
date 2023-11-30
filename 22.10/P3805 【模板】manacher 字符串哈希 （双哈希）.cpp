@@ -16,12 +16,12 @@ struct hash_space{
     #define y second
     static hat mul(const hat&a,ty v,ty c={}){return mul(a,{v,v},{c,c});}
     static hat mul(const hat&a,hat v,hat c=0){
-        return {c.x+lt(a.x)*v.x%mod1,
-                c.y+lt(a.y)*v.y%mod2};
+        return {(c.x+lt(a.x)*v.x)%mod1,
+                (c.y+lt(a.y)*v.y)%mod2};
     }
     static hat sub(hat a,hat v,hat c=0){
-        hat ret={c.x-lt(a.x)*v.x%mod1,
-                c.y-lt(a.y)*v.y%mod2};
+        hat ret={(c.x-lt(a.x)*v.x)%mod1,
+                (c.y-lt(a.y)*v.y)%mod2};
         if(ret.x<0) ret.x+=mod1;
         if(ret.y<0) ret.y+=mod2;
         return ret;
