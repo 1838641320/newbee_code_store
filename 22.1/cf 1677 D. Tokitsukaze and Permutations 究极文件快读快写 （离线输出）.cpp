@@ -7,8 +7,8 @@ using namespace std;
 #include<queue>
 typedef long long ll;
 namespace fastio{const int Q=(1<<21)+1;
-inline int gc(){static char in[Q],*is=in,*it=in;return is==it?it=(is=in)+fread(in,1,Q,stdin),(is==it?EOF:*is++):*is++;}
-static char out[Q],*os=out;inline void flush(){fwrite(out,1,os-out,stdout);os=out;}inline void pc(char c){*os++=c;if(os-out==Q)flush();}
+int gc(){static char in[Q],*is=in,*it=in;return is==it?it=(is=in)+fread(in,1,Q,stdin),(is==it?EOF:*is++):*is++;}
+static char out[Q],*os=out;void flush(){fwrite(out,1,os-out,stdout);os=out;}void pc(char c){*os++=c;if(os-out==Q)flush();}
 template<class A>void print(A a,char c=' '){static char o1[99]={},*o=o1;if(a<0) pc('-'),a=-a;if(a==0) pc('0');while(a>0) *(++o)=a%10,a/=10;while(o!=o1) pc(*(o--)+48);pc(c);}
 template<class A,class...B>void print(A a,char c,B...b){print(a,c);print(b...);}
 template<class T>void read(T&a){a=0;int f=0,c=gc();for(;!isdigit(c);c=gc()) f|=c=='-';for(;isdigit(c);c=gc()) a=a*10+(c^'0');if(f) a=-a;}
@@ -66,10 +66,10 @@ int main(){
 
 /*输出流在线的版本
 namespace fastio{
-inline int gc(){const int Q=(1<<21)+1;static char in[Q],*is=in,*it=in;return is==it?it=(is=in)+fread(in,1,Q,stdin),(is==it?EOF:*is++):*is++;}
-template<class A>inline void print(A a,char c=' '){static char o1[99]={},*o=o1;if(a<0) putc('-',stdout),a=-a;if(a==0) putc('0',stdout);while(a>0) *(++o)=a%10,a/=10;while(o!=o1) putc(*(o--)+48,stdout);putc(c,stdout);}
+int gc(){const int Q=(1<<21)+1;static char in[Q],*is=in,*it=in;return is==it?it=(is=in)+fread(in,1,Q,stdin),(is==it?EOF:*is++):*is++;}
+template<class A>void print(A a,char c=' '){static char o1[99]={},*o=o1;if(a<0) putc('-',stdout),a=-a;if(a==0) putc('0',stdout);while(a>0) *(++o)=a%10,a/=10;while(o!=o1) putc(*(o--)+48,stdout);putc(c,stdout);}
 template<class A,class ...B>void print(A a,char c,B...b){print(a,c);print(b...);}
-template<class T>inline void read(T&a){a=0;int f=0,c=gc();for(;!isdigit(c);c=gc()) f|=c=='-';for(;isdigit(c);c=gc()) a=a*10+(c^'0');if(f) a=-a;}
+template<class T>void read(T&a){a=0;int f=0,c=gc();for(;!isdigit(c);c=gc()) f|=c=='-';for(;isdigit(c);c=gc()) a=a*10+(c^'0');if(f) a=-a;}
 template<class A,class...B>void read(A&x,B&...y){read(x),read(y...);}
 }using namespace fastio;
 */
