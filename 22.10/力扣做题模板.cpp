@@ -22,17 +22,20 @@ template<class t>
 ostream& operator<<(ostream&os,const vector<t> &a){
 	for(auto i=0u;i<size(a);i++) 
 		os<<",{"[!i]<<a[i];
-	return os<<"} "[empty(a)];
+	return os<<"}\0{}"+empty(a)*2;
 }
 int main(){
 	Solution s;
 	vector<vector<int>> g,g2;
 	vector<int> a,b;
 	g2={{0,3},{3,6},{2,6},{0,6}};
+	g={{1,2,4,5}};
+	// cout<<g<<"\n";
+	// cout<<g2<<"\n";
+	// g={{}};
+	// cout<<g<<"\n";
 	a={2,0,1};
 	// a={1,2,3,4};
 	// a={1,2,3,4,5};
-	// cout<<s.getMaxFunctionValue(a,8)<<"\n";
-	g={{1,2,4,5}};
 	cout<<s.canMakePalindromeQueries("acbcab",g)<<"\n";
 }
