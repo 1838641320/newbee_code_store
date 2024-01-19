@@ -9,7 +9,7 @@ typedef long long ll;
 namespace fastio{const int Q=(1<<19)+1;static char in[Q],*is=in,*it=in,out[Q],*os=out;
 int gc(){return is==it?it=(is=in)+fread(in,1,Q,stdin),(is==it?EOF:*is++):*is++;}
 void pc(char c){*os++=c;if(os-out==Q)fwrite(out,1,os-out,stdout),os=out;}
-template<class A>void print(A a,char c=' '){static char o1[99]={},*o=o1;if(a<0) pc('-'),a=-a;if(a==0) pc('0');while(a>0) *(++o)=a%10,a/=10;while(o!=o1) pc(*(o--)+48);pc(c);}
+template<class A>void print(A a,char c=' '){auto s1=to_string(a);for(auto c=s1.c_str();*c;c++) pc(*c);pc(c);}
 template<class A,class...B>void print(A a,char c,B...b){print(a,c);print(b...);}
 template<class T>void read(T&a){a=0;int f=0,c=gc();for(;!isdigit(c);c=gc()) f|=c=='-';for(;isdigit(c);c=gc()) a=a*10+(c^'0');if(f) a=-a;}
 template<class A,class...B>void read(A&x,B&...y){read(x),read(y...);}
