@@ -3,6 +3,7 @@
 using namespace std;
 using ll=long long;
 #include<vector>
+//在圆方树中，原来的每个点对应一个 圆点，每一个点双对应一个 方点。
 struct Round_square{
 	int n,dfc,tp;
 	vector<vector<int>> g,&G;
@@ -21,7 +22,7 @@ struct Round_square{
 				tarjan(v);
 				low[u]=min(low[u],low[v]);
 				if(low[v]==dfn[u]){
-					n++;
+					n++;//添加方点
 					for(int x=0;x!=v;tp--){
 						x=st[tp-1];
 						g[n].push_back(x);
