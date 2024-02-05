@@ -48,7 +48,7 @@ struct hash_space{
         }
     };
     node get(int l,int r){
-        l=max(l,1),r=min(r,(int)ha.size());
+        l=max(l,1),r=min(r,(int)ha.size()-1);
         if(l>r) return {{},0};
         return {sub(ha[l-1],pb[r-l+1],ha[r]),r-l+1};
     }
