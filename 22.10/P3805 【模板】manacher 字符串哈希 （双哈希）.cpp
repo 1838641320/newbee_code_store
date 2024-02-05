@@ -14,12 +14,12 @@ struct hash_space{
     using lt=ll;  //bigger type to fit multiply result
     #define x first
     #define y second
-    static hat mul(const hat&a,ty v,ty c={}){return mul(a,{v,v},{c,c});}
-    static hat mul(const hat&a,hat v,hat c={}){
+    constexpr static hat mul(const hat&a,ty v,ty c={}){return mul(a,{v,v},{c,c});}
+    constexpr static hat mul(const hat&a,hat v,hat c={}){
         return {(c.x+lt(a.x)*v.x)%mod1,
                 (c.y+lt(a.y)*v.y)%mod2};
     }
-    static hat sub(hat a,hat v,hat c={}){
+    constexpr static hat sub(hat a,hat v,hat c={}){
         hat ret={(c.x-lt(a.x)*v.x)%mod1,
                 (c.y-lt(a.y)*v.y)%mod2};
         if(ret.x<0) ret.x+=mod1;
@@ -40,13 +40,13 @@ struct hash_space{
     }
     struct node{
         hat ha={};int len=0;
-        node operator+(const node&a)const{
-            return {mul(ha,pb[a.len],a.ha),len+a.len};
-        }
-        bool operator==(const node&a)const{
+        constexpr bool operator==(const node&a)const{
             return ha==a.ha&&len==a.len;
         }
     };
+	constexpr node add(const node&b,const node&a){
+		return {mul(b.ha,pb[a.len],a.ha),b.len+a.len};
+	}
     node get(int l,int r){
         l=max(l,1),r=min(r,(int)ha.size()-1);
         if(l>r) return {{},0};
