@@ -43,6 +43,9 @@ struct hash_space{
         constexpr bool operator==(const node&a)const{
             return ha==a.ha&&len==a.len;
         }
+        constexpr bool operator<(const node&a)const{
+            return ha<a.ha;
+        }
     };
 	constexpr node add(const node&b,const node&a){
 		return {mul(b.ha,pb[a.len],a.ha),b.len+a.len};
