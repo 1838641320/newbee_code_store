@@ -33,11 +33,6 @@ private:
             r=in,split(v,ch[in][0],l,ch[in][0]);
         update(in);
     }
-    int get_rank(ty v,int in){
-        if(!in) return 0;
-        if(v<=val[in]) return get_rank(v,ch[in][0]);
-        return sz[ch[in][0]]+1+get_rank(v,ch[in][1]);
-    }
 public:
     treap(size_t n):rd(time(0)),ch(n+1),sz(n+1),pri(n+1),val(n+1){
         this->n=this->root=0;
@@ -60,7 +55,13 @@ public:
         M=merge(ch[M][0],ch[M][1]);
         root=merge(L,merge(M,R));
     }
-    int get_rank(ty v){return get_rank(v,root)+1;}
+    int get_rank(ty v,int res=1){
+        for(int in=root;in;){
+            if(v<=val[in]) in=ch[in][0];
+            else res+=sz[ch[in][0]]+1,in=ch[in][1];
+        }
+        return res;
+    }
     void print(int in=0);
 };
 #include<format>
