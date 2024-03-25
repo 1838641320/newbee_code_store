@@ -37,14 +37,6 @@ public:
     treap(size_t n):rd(time(0)),ch(n+1),sz(n+1),pri(n+1),val(n+1){
         this->n=this->root=0;
     }
-    int get_kth(int k){
-        for(int in=root;;){
-            int t=sz[ch[in][0]];
-            if(k<=t) in=ch[in][0];
-            else if(k==t+1) return val[in];
-            else k-=t+1,in=ch[in][1];
-        }
-    }
     void insert(ty v){
         split(v,root,L,R);
         root=merge(L,merge(newnode(v),R));
@@ -61,6 +53,14 @@ public:
             else res+=sz[ch[in][0]]+1,in=ch[in][1];
         }
         return res;
+    }
+    int get_kth(int k){
+        for(int in=root;;){
+            int t=sz[ch[in][0]];
+            if(k<=t) in=ch[in][0];
+            else if(k==t+1) return val[in];
+            else k-=t+1,in=ch[in][1];
+        }
     }
     void print(int in=0);
 };
