@@ -18,15 +18,17 @@ private:
         return n;
     }
     void update(int u){sz[u]=sz[ch[u][0]]+sz[ch[u][1]]+1;}
+    void down(int u){}
     int merge(int l,int r){//return new root;
         if((ll)l*r==0) return l+r;//null return;
         if(pri[l]<pri[r])
-            return ch[l][1]=merge(ch[l][1],r),update(l),l;
+            return down(l),ch[l][1]=merge(ch[l][1],r),update(l),l;
         else 
-            return ch[r][0]=merge(l,ch[r][0]),update(r),r;
+            return down(r),ch[r][0]=merge(l,ch[r][0]),update(r),r;
     }
     void split(ty v,int in,int&l,int&r){//l<=v,r>v
         if(!in) return void(l=r=0);
+		down(in);
         if(val[in]<=v)
             l=in,split(v,ch[in][1],ch[in][1],r);
         else 
