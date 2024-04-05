@@ -36,7 +36,6 @@ T convertFromString(const char *&str) {
     int tmp;
     return convertFromString<T>(str,tmp);
 }
-template<typename ty>
 auto parse(const char *&s,auto getf,auto pushf){
     auto a=getf;
     s+=1;
@@ -53,13 +52,13 @@ auto fpush1(vector<ty> &a,const char *&s){
 }
 template<typename ty>
 auto fpush2(vector<vector<ty>> &a,const char*&s){
-    a.push_back(parse<ty>(s,vector<ty>{},fpush1<ty>));
+    a.push_back(parse(s,vector<ty>{},fpush1<ty>));
 }
 auto operator ""_V2(const char* s,size_t ){
-    return parse<int>(s,vector<vector<int>>{},fpush2<int>);
+    return parse(s,vector<vector<int>>{},fpush2<int>);
 }
 auto operator ""_V1(const char* s,size_t ){
-    return parse<int>(s,vector<int>{},fpush1<int>);
+    return parse(s,vector<int>{},fpush1<int>);
 }
 }
 int main(){
@@ -67,6 +66,8 @@ int main(){
 	Solution s;
 	vector<vector<int>> g,g2;
 	vector<int> a,b;
+    a="[1,2,3,4]"_V1;
+    g="[[5,5],[6,6]]"_V2;
     vector<string> w={"a","aba","ababa","aa"};
 	g2={{0,2},{1,2},{4,2},{3,4}};
 	g={{3,4,2,1},{4,2,1,1},{2,1,1,0},{3,4,1,0}};
