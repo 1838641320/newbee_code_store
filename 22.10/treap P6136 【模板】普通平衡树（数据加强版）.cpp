@@ -28,7 +28,7 @@ private:
     }
     void split(ty v,int in,int&l,int&r){//l<=v,r>v
         if(!in) return void(l=r=0);
-		down(in);
+        down(in);
         if(val[in]<=v)
             l=in,split(v,ch[in][1],ch[in][1],r);
         else 
