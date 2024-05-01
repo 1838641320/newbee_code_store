@@ -62,6 +62,10 @@ auto operator ""_V1(const char* s,size_t ){
 }
 }
 int main(){
+	ios::sync_with_stdio(0);
+    cin.tie(0);cout.tie(0);
+    freopen("1.txt","r",stdin);
+    // freopen("CON","r",stdin);
     using namespace my_util;
 	Solution s;
 	vector<vector<int>> g,g2;
