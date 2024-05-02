@@ -24,7 +24,7 @@ struct treap{
         // val[u].sub=0;
     }
     int merge(int l,int r){//return new root;
-        if((ll)l*r==0) return l+r;//null return;
+        if((long long)l*r==0) return l+r;//null return;
         if(pri[l]<pri[r])
             return down(l),ch[l][1]=merge(ch[l][1],r),update(l),l;
         else 
