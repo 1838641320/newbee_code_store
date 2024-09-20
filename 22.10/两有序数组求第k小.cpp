@@ -37,7 +37,7 @@ T getk(std::vector<T>&a,std::vector<T>&b,int k){
         if(n==0) return b[k-1];
         if(k==1) return std::min(a[0],b[0]);
         int i=std::min(n,k/2),j=std::min(m,k/2);
-        if(a[i-1]>b[i-1])
+        if(a[i-1]>b[j-1])
             return f(f,a,n,b+j,m-j,k-j);
         else 
             return f(f,a+i,n-i,b,m,k-i);
