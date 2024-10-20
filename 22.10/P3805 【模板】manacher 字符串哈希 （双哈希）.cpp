@@ -11,7 +11,7 @@ template<class ty=int,ty mod1=ty(1e9)+97,ty mod2=ty(1e9)+93,int base=233>
 struct hash_space{
     //start
     using hat=pair<int,int>;//hash type
-    using lt=ll;  //bigger type to fit multiply result
+    using lt=long long;  //bigger type to fit multiply result
     #define x first
     #define y second
     constexpr static hat mul(const hat&a,ty v,ty c={}){return mul(a,{v,v},{c,c});}
